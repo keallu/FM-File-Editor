@@ -6,6 +6,9 @@
     <RootNamespace>FMFileEditor</RootNamespace>
     <UseWindowsForms>true</UseWindowsForms>
     <AssemblyName>FMFileEditor</AssemblyName>
+    <Authors>Kenneth Lund</Authors>
+    <Product>FM File Editor</Product>
+    <Company />
   </PropertyGroup>
 
   <ItemGroup>

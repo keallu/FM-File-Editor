@@ -228,6 +228,8 @@ namespace FMFileEditor
                     dataGridViewCompetitions.DataSource = competitions;
                     dataGridViewAwards.DataSource = awards;
 
+                    Text = $"FM File Editor - {filePath}";
+
                     string message;
 
                     if (failed > 0)
@@ -242,7 +244,6 @@ namespace FMFileEditor
                     MessageBox.Show(message, "File opened and changes imported");
                 }
             }
-
         }
 
         private static bool AddToDataTable(DataTable dataTable, string[] columns, int expectedValues, bool multiNaming, string multiNamingLabel)
@@ -264,6 +265,7 @@ namespace FMFileEditor
                 else if (multiNaming)
                 {
                     row[multiNamingLabel] = values[1];
+                    row["Language"] = values[expectedValues - 1];
                 }
 
                 return true;
@@ -279,7 +281,7 @@ namespace FMFileEditor
             Stream stream;
             SaveFileDialog saveFileDialog = new SaveFileDialog();
 
-            saveFileDialog.Filter = "lnc Files(*.lnc)| *.lnc";
+            saveFileDialog.Filter = "lnc Files (*.lnc)| *.lnc";
 
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
@@ -298,6 +300,8 @@ namespace FMFileEditor
 
                     stream.Close();
                 }
+
+                Text = $"FM File Editor - {saveFileDialog.FileName}";
             }
         }
 
