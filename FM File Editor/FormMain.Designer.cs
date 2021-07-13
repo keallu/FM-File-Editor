@@ -42,6 +42,10 @@ namespace FMFileEditor
             this.ColumnPlayersSecondName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.dataGridViewClubs = new System.Windows.Forms.DataGridView();
+            this.ColumnClubsID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnClubsLongName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnClubsShortName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnClubsLanguage = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.dataGridViewStadiums = new System.Windows.Forms.DataGridView();
             this.ColumnStadiumsID = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -60,20 +64,17 @@ namespace FMFileEditor
             this.ColumnCitiesLanguage = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.dataGridViewCompetitions = new System.Windows.Forms.DataGridView();
-            this.tabPage7 = new System.Windows.Forms.TabPage();
-            this.dataGridViewAwards = new System.Windows.Forms.DataGridView();
-            this.ColumnClubsID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnClubsLongName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnClubsShortName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnClubsLanguage = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnCompetitionsID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnCompetitionsLongName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnCompetitionsShortName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnCompetitionsLanguage = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.dataGridViewAwards = new System.Windows.Forms.DataGridView();
             this.ColumnAwardsID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnAwardsLongName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnAwardsShortName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnAwardsLanguage = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.toolStripButtonNew = new System.Windows.Forms.ToolStripButton();
             this.toolStripMain.SuspendLayout();
             this.tabControlMain.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -97,6 +98,7 @@ namespace FMFileEditor
             this.toolStripMain.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStripMain.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStripMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripButtonNew,
             this.toolStripButtonOpen,
             this.toolStripButtonSave});
             this.toolStripMain.Location = new System.Drawing.Point(0, 0);
@@ -223,6 +225,34 @@ namespace FMFileEditor
             this.dataGridViewClubs.RowTemplate.Height = 29;
             this.dataGridViewClubs.Size = new System.Drawing.Size(1278, 676);
             this.dataGridViewClubs.TabIndex = 1;
+            // 
+            // ColumnClubsID
+            // 
+            this.ColumnClubsID.DataPropertyName = "Id";
+            this.ColumnClubsID.HeaderText = "ID";
+            this.ColumnClubsID.MinimumWidth = 6;
+            this.ColumnClubsID.Name = "ColumnClubsID";
+            // 
+            // ColumnClubsLongName
+            // 
+            this.ColumnClubsLongName.DataPropertyName = "LongName";
+            this.ColumnClubsLongName.HeaderText = "Long Name";
+            this.ColumnClubsLongName.MinimumWidth = 6;
+            this.ColumnClubsLongName.Name = "ColumnClubsLongName";
+            // 
+            // ColumnClubsShortName
+            // 
+            this.ColumnClubsShortName.DataPropertyName = "ShortName";
+            this.ColumnClubsShortName.HeaderText = "Short Name";
+            this.ColumnClubsShortName.MinimumWidth = 6;
+            this.ColumnClubsShortName.Name = "ColumnClubsShortName";
+            // 
+            // ColumnClubsLanguage
+            // 
+            this.ColumnClubsLanguage.DataPropertyName = "Language";
+            this.ColumnClubsLanguage.HeaderText = "Language";
+            this.ColumnClubsLanguage.MinimumWidth = 6;
+            this.ColumnClubsLanguage.Name = "ColumnClubsLanguage";
             // 
             // tabPage3
             // 
@@ -404,62 +434,6 @@ namespace FMFileEditor
             this.dataGridViewCompetitions.Size = new System.Drawing.Size(1278, 676);
             this.dataGridViewCompetitions.TabIndex = 2;
             // 
-            // tabPage7
-            // 
-            this.tabPage7.Controls.Add(this.dataGridViewAwards);
-            this.tabPage7.Location = new System.Drawing.Point(4, 29);
-            this.tabPage7.Name = "tabPage7";
-            this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage7.Size = new System.Drawing.Size(1284, 682);
-            this.tabPage7.TabIndex = 6;
-            this.tabPage7.Text = "Awards";
-            this.tabPage7.UseVisualStyleBackColor = true;
-            // 
-            // dataGridViewAwards
-            // 
-            this.dataGridViewAwards.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridViewAwards.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewAwards.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ColumnAwardsID,
-            this.ColumnAwardsLongName,
-            this.ColumnAwardsShortName,
-            this.ColumnAwardsLanguage});
-            this.dataGridViewAwards.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridViewAwards.Location = new System.Drawing.Point(3, 3);
-            this.dataGridViewAwards.Name = "dataGridViewAwards";
-            this.dataGridViewAwards.RowHeadersWidth = 51;
-            this.dataGridViewAwards.RowTemplate.Height = 29;
-            this.dataGridViewAwards.Size = new System.Drawing.Size(1278, 676);
-            this.dataGridViewAwards.TabIndex = 2;
-            // 
-            // ColumnClubsID
-            // 
-            this.ColumnClubsID.DataPropertyName = "Id";
-            this.ColumnClubsID.HeaderText = "ID";
-            this.ColumnClubsID.MinimumWidth = 6;
-            this.ColumnClubsID.Name = "ColumnClubsID";
-            // 
-            // ColumnClubsLongName
-            // 
-            this.ColumnClubsLongName.DataPropertyName = "LongName";
-            this.ColumnClubsLongName.HeaderText = "Long Name";
-            this.ColumnClubsLongName.MinimumWidth = 6;
-            this.ColumnClubsLongName.Name = "ColumnClubsLongName";
-            // 
-            // ColumnClubsShortName
-            // 
-            this.ColumnClubsShortName.DataPropertyName = "ShortName";
-            this.ColumnClubsShortName.HeaderText = "Short Name";
-            this.ColumnClubsShortName.MinimumWidth = 6;
-            this.ColumnClubsShortName.Name = "ColumnClubsShortName";
-            // 
-            // ColumnClubsLanguage
-            // 
-            this.ColumnClubsLanguage.DataPropertyName = "Language";
-            this.ColumnClubsLanguage.HeaderText = "Language";
-            this.ColumnClubsLanguage.MinimumWidth = 6;
-            this.ColumnClubsLanguage.Name = "ColumnClubsLanguage";
-            // 
             // ColumnCompetitionsID
             // 
             this.ColumnCompetitionsID.DataPropertyName = "Id";
@@ -488,6 +462,34 @@ namespace FMFileEditor
             this.ColumnCompetitionsLanguage.MinimumWidth = 6;
             this.ColumnCompetitionsLanguage.Name = "ColumnCompetitionsLanguage";
             // 
+            // tabPage7
+            // 
+            this.tabPage7.Controls.Add(this.dataGridViewAwards);
+            this.tabPage7.Location = new System.Drawing.Point(4, 29);
+            this.tabPage7.Name = "tabPage7";
+            this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage7.Size = new System.Drawing.Size(1284, 682);
+            this.tabPage7.TabIndex = 6;
+            this.tabPage7.Text = "Awards";
+            this.tabPage7.UseVisualStyleBackColor = true;
+            // 
+            // dataGridViewAwards
+            // 
+            this.dataGridViewAwards.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridViewAwards.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewAwards.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ColumnAwardsID,
+            this.ColumnAwardsLongName,
+            this.ColumnAwardsShortName,
+            this.ColumnAwardsLanguage});
+            this.dataGridViewAwards.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridViewAwards.Location = new System.Drawing.Point(3, 3);
+            this.dataGridViewAwards.Name = "dataGridViewAwards";
+            this.dataGridViewAwards.RowHeadersWidth = 51;
+            this.dataGridViewAwards.RowTemplate.Height = 29;
+            this.dataGridViewAwards.Size = new System.Drawing.Size(1278, 676);
+            this.dataGridViewAwards.TabIndex = 2;
+            // 
             // ColumnAwardsID
             // 
             this.ColumnAwardsID.DataPropertyName = "Id";
@@ -515,6 +517,16 @@ namespace FMFileEditor
             this.ColumnAwardsLanguage.HeaderText = "Language";
             this.ColumnAwardsLanguage.MinimumWidth = 6;
             this.ColumnAwardsLanguage.Name = "ColumnAwardsLanguage";
+            // 
+            // toolStripButtonNew
+            // 
+            this.toolStripButtonNew.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButtonNew.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonNew.Image")));
+            this.toolStripButtonNew.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonNew.Name = "toolStripButtonNew";
+            this.toolStripButtonNew.Size = new System.Drawing.Size(43, 24);
+            this.toolStripButtonNew.Text = "New";
+            this.toolStripButtonNew.Click += new System.EventHandler(this.toolStripButtonNew_Click);
             // 
             // FormMain
             // 
@@ -594,6 +606,7 @@ namespace FMFileEditor
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnAwardsLongName;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnAwardsShortName;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnAwardsLanguage;
+        private System.Windows.Forms.ToolStripButton toolStripButtonNew;
     }
 }
 

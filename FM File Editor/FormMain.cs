@@ -7,14 +7,95 @@ namespace FMFileEditor
 {
     public partial class FormMain : Form
     {
+        private DataTable players;
+        private DataTable clubs;
+        private DataTable stadiums;
+        private DataTable nations;
+        private DataTable cities;
+        private DataTable competitions;
+        private DataTable awards;
+
         public FormMain()
         {
             InitializeComponent();
+
+            Init();
+        }
+
+        private void Init()
+        {
+            players = new();
+            players.Columns.Add("Id", typeof(string));
+            players.Columns.Add("FirstName", typeof(string));
+            players.Columns.Add("CommonName", typeof(string));
+            players.Columns.Add("SecondName", typeof(string));
+            players.PrimaryKey = new DataColumn[] { players.Columns["Id"] };
+
+            clubs = new();
+            clubs.Columns.Add("Id", typeof(string));
+            clubs.Columns.Add("LongName", typeof(string));
+            clubs.Columns.Add("ShortName", typeof(string));
+            clubs.Columns.Add("Language", typeof(string));
+            clubs.PrimaryKey = new DataColumn[] { clubs.Columns["Id"] };
+
+            stadiums = new();
+            stadiums.Columns.Add("Id", typeof(string));
+            stadiums.Columns.Add("Name", typeof(string));
+            stadiums.Columns.Add("Language", typeof(string));
+            stadiums.PrimaryKey = new DataColumn[] { stadiums.Columns["Id"] };
+
+            nations = new();
+            nations.Columns.Add("Id", typeof(string));
+            nations.Columns.Add("LongName", typeof(string));
+            nations.Columns.Add("ShortName", typeof(string));
+            nations.Columns.Add("Language", typeof(string));
+            nations.PrimaryKey = new DataColumn[] { nations.Columns["Id"] };
+
+            cities = new();
+            cities.Columns.Add("Id", typeof(string));
+            cities.Columns.Add("Name", typeof(string));
+            cities.Columns.Add("Language", typeof(string));
+            cities.PrimaryKey = new DataColumn[] { cities.Columns["Id"] };
+
+            competitions = new();
+            competitions.Columns.Add("Id", typeof(string));
+            competitions.Columns.Add("LongName", typeof(string));
+            competitions.Columns.Add("ShortName", typeof(string));
+            competitions.Columns.Add("Language", typeof(string));
+            competitions.PrimaryKey = new DataColumn[] { competitions.Columns["Id"] };
+
+            awards = new();
+            awards.Columns.Add("Id", typeof(string));
+            awards.Columns.Add("LongName", typeof(string));
+            awards.Columns.Add("ShortName", typeof(string));
+            awards.Columns.Add("Language", typeof(string));
+            awards.PrimaryKey = new DataColumn[] { awards.Columns["Id"] };
+
+            dataGridViewPlayers.DataSource = players;
+            dataGridViewClubs.DataSource = clubs;
+            dataGridViewStadiums.DataSource = stadiums;
+            dataGridViewNations.DataSource = nations;
+            dataGridViewCities.DataSource = cities;
+            dataGridViewCompetitions.DataSource = competitions;
+            dataGridViewAwards.DataSource = awards;
+        }
+
+        private void toolStripButtonNew_Click(object sender, EventArgs e)
+        {
+            players.Clear();
+            clubs.Clear();
+            stadiums.Clear();
+            nations.Clear();
+            cities.Clear();
+            competitions.Clear();
+            awards.Clear();
+
+            Text = $"FM File Editor";
         }
 
         private void toolStripButtonOpen_Click(object sender, EventArgs e)
         {
-            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            using (OpenFileDialog openFileDialog = new())
             {
                 openFileDialog.Filter = "lnc Files (*.lnc)|*.lnc";
 
@@ -22,52 +103,13 @@ namespace FMFileEditor
                 {
                     string filePath = openFileDialog.FileName;
 
-                    DataTable players = new();
-                    players.Columns.Add("Id", typeof(string));
-                    players.Columns.Add("FirstName", typeof(string));
-                    players.Columns.Add("CommonName", typeof(string));
-                    players.Columns.Add("SecondName", typeof(string));
-                    players.PrimaryKey = new DataColumn[] { players.Columns["Id"] };
-
-                    DataTable clubs = new();
-                    clubs.Columns.Add("Id", typeof(string));
-                    clubs.Columns.Add("LongName", typeof(string));
-                    clubs.Columns.Add("ShortName", typeof(string));
-                    clubs.Columns.Add("Language", typeof(string));
-                    clubs.PrimaryKey = new DataColumn[] { clubs.Columns["Id"] };
-
-                    DataTable stadiums = new();
-                    stadiums.Columns.Add("Id", typeof(string));
-                    stadiums.Columns.Add("Name", typeof(string));
-                    stadiums.Columns.Add("Language", typeof(string));
-                    stadiums.PrimaryKey = new DataColumn[] { stadiums.Columns["Id"] };
-
-                    DataTable nations = new();
-                    nations.Columns.Add("Id", typeof(string));
-                    nations.Columns.Add("LongName", typeof(string));
-                    nations.Columns.Add("ShortName", typeof(string));
-                    nations.Columns.Add("Language", typeof(string));
-                    nations.PrimaryKey = new DataColumn[] { nations.Columns["Id"] };
-
-                    DataTable cities = new();
-                    cities.Columns.Add("Id", typeof(string));
-                    cities.Columns.Add("Name", typeof(string));
-                    cities.Columns.Add("Language", typeof(string));
-                    cities.PrimaryKey = new DataColumn[] { cities.Columns["Id"] };
-
-                    DataTable competitions = new();
-                    competitions.Columns.Add("Id", typeof(string));
-                    competitions.Columns.Add("LongName", typeof(string));
-                    competitions.Columns.Add("ShortName", typeof(string));
-                    competitions.Columns.Add("Language", typeof(string));
-                    competitions.PrimaryKey = new DataColumn[] { competitions.Columns["Id"] };
-
-                    DataTable awards = new();
-                    awards.Columns.Add("Id", typeof(string));
-                    awards.Columns.Add("LongName", typeof(string));
-                    awards.Columns.Add("ShortName", typeof(string));
-                    awards.Columns.Add("Language", typeof(string));
-                    awards.PrimaryKey = new DataColumn[] { awards.Columns["Id"] };
+                    players.Clear();
+                    clubs.Clear();
+                    stadiums.Clear();
+                    nations.Clear();
+                    cities.Clear();
+                    competitions.Clear();
+                    awards.Clear();
 
                     string item;
                     string[] columns;
@@ -220,14 +262,6 @@ namespace FMFileEditor
                         }
                     }
 
-                    dataGridViewPlayers.DataSource = players;
-                    dataGridViewClubs.DataSource = clubs;
-                    dataGridViewStadiums.DataSource = stadiums;
-                    dataGridViewNations.DataSource = nations;
-                    dataGridViewCities.DataSource = cities;
-                    dataGridViewCompetitions.DataSource = competitions;
-                    dataGridViewAwards.DataSource = awards;
-
                     Text = $"FM File Editor - {filePath}";
 
                     string message;
@@ -279,7 +313,7 @@ namespace FMFileEditor
         private void toolStripButtonSave_Click(object sender, EventArgs e)
         {
             Stream stream;
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            SaveFileDialog saveFileDialog = new();
 
             saveFileDialog.Filter = "lnc Files (*.lnc)| *.lnc";
 
@@ -287,15 +321,15 @@ namespace FMFileEditor
             {
                 if ((stream = saveFileDialog.OpenFile()) != null)
                 {
-                    using (StreamWriter streamWriter = new StreamWriter(stream))
+                    using (StreamWriter streamWriter = new(stream))
                     {
-                        WriteDataGridViewToFile(streamWriter, dataGridViewPlayers, "CHANGE_PLAYER_NAME");
-                        WriteMultiNamingDataGridViewToFile(streamWriter, dataGridViewClubs, "CLUB_NAME_CHANGE", "CLUB_SHORT_NAME_CHANGE");
-                        WriteDataGridViewToFile(streamWriter, dataGridViewStadiums, "STADIUM_NAME_CHANGE");
-                        WriteMultiNamingDataGridViewToFile(streamWriter, dataGridViewNations, "NATION_LONG_NAME_CHANGE", "NATION_SHORT_NAME_CHANGE");
-                        WriteDataGridViewToFile(streamWriter, dataGridViewCities, "CITY_NAME_CHANGE");
-                        WriteMultiNamingDataGridViewToFile(streamWriter, dataGridViewCompetitions, "COMP_LONG_NAME_CHANGE", "COMP_SHORT_NAME_CHANGE");
-                        WriteMultiNamingDataGridViewToFile(streamWriter, dataGridViewAwards, "AWARD_LONG_NAME_CHANGE", "AWARD_SHORT_NAME_CHANGE");
+                        WriteDataTableToFile(streamWriter, players, "CHANGE_PLAYER_NAME");
+                        WriteDataTableToFile(streamWriter, clubs, "CLUB_NAME_CHANGE", "CLUB_SHORT_NAME_CHANGE");
+                        WriteDataTableToFile(streamWriter, stadiums, "STADIUM_NAME_CHANGE");
+                        WriteDataTableToFile(streamWriter, nations, "NATION_LONG_NAME_CHANGE", "NATION_SHORT_NAME_CHANGE");
+                        WriteDataTableToFile(streamWriter, cities, "CITY_NAME_CHANGE");
+                        WriteDataTableToFile(streamWriter, competitions, "COMP_LONG_NAME_CHANGE", "COMP_SHORT_NAME_CHANGE");
+                        WriteDataTableToFile(streamWriter, awards, "AWARD_LONG_NAME_CHANGE", "AWARD_SHORT_NAME_CHANGE");
                     }
 
                     stream.Close();
@@ -305,53 +339,47 @@ namespace FMFileEditor
             }
         }
 
-        private static void WriteDataGridViewToFile(StreamWriter streamWriter, DataGridView dataGridView, string change)
+        private static void WriteDataTableToFile(StreamWriter streamWriter, DataTable dataTable, string change1, string change2 = null)
         {
             string value;
-            string line;
+            string line1;
+            string line2;
 
-            for (int i = 0; i < dataGridView.Rows.Count - 1; i++)
+            for (int i = 0; i < dataTable.Rows.Count; i++)
             {
-                line = "\"" + change + "\"";
+                line1 = "\"" + change1 + "\"";
+                line2 = "\"" + change2 + "\"";
 
-                for (int j = 0; j < dataGridView.Columns.Count; j++)
+                for (int j = 0; j < dataTable.Columns.Count; j++)
                 {
-                    value = j != 0 ? "\"" + dataGridView.Rows[i].Cells[j].EditedFormattedValue.ToString() + "\"" : dataGridView.Rows[i].Cells[j].EditedFormattedValue.ToString();
+                    value = j != 0 ? "\"" + dataTable.Rows[i].ItemArray[j].ToString() + "\"" : dataTable.Rows[i].ItemArray[j].ToString();
 
-                    line += '\t' + value;
-                }
-
-                streamWriter.WriteLine(line);
-            }
-        }
-
-        private static void WriteMultiNamingDataGridViewToFile(StreamWriter streamWriter, DataGridView dataGridView, string changeLong, string changeShort)
-        {
-            string value;
-            string lineLong;
-            string lineShort;
-
-            for (int i = 0; i < dataGridView.Rows.Count - 1; i++)
-            {
-                lineLong = "\"" + changeLong + "\"";
-                lineShort = "\"" + changeShort + "\"";
-
-                for (int j = 0; j < dataGridView.Columns.Count; j++)
-                {
-                    value = j != 0 ? "\"" + dataGridView.Rows[i].Cells[j].EditedFormattedValue.ToString() + "\"" : dataGridView.Rows[i].Cells[j].EditedFormattedValue.ToString();
-
-                    if (j != 2)
+                    if (change2 != null)
                     {
-                        lineLong += '\t' + value;
+                        if (j != 2)
+                        {
+                            line1 += '\t' + value;
+                        }
+                        if (j != 1)
+                        {
+                            line2 += '\t' + value;
+                        }
                     }
-                    if (j != 1)
+                    else
                     {
-                        lineShort += '\t' + value;
+                        line1 += '\t' + value;
                     }
                 }
 
-                streamWriter.WriteLine(lineLong);
-                streamWriter.WriteLine(lineShort);
+                if (change2 != null)
+                {
+                    streamWriter.WriteLine(line1);
+                    streamWriter.WriteLine(line2);
+                }
+                else
+                {
+                    streamWriter.WriteLine(line1);
+                }
             }
         }
     }
