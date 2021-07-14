@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace FMFileEditor
@@ -111,22 +112,19 @@ namespace FMFileEditor
                     competitions.Clear();
                     awards.Clear();
 
-                    string item;
                     string[] columns;
                     int passed = 0;
                     int failed = 0;
 
                     foreach (string line in File.ReadAllLines(filePath))
                     {
-                        item = line.Trim();
-
-                        if (item.Length > 0)
+                        if (line.Length > 0)
                         {
-                            if (!item.StartsWith("#"))
+                            if (!line.StartsWith("#"))
                             {
-                                item = item.Replace("\"", "");
-
-                                columns = item.Split('\t', StringSplitOptions.TrimEntries);
+                                columns = line.Replace("\t", "").Split('"')
+                                    .Select((element, index) => index % 2 == 0 ? element.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries) : new string[] { element })
+                                    .SelectMany(element => element).ToArray();
 
                                 if (columns.Length > 3 && columns[1] != "")
                                 {
@@ -352,7 +350,7 @@ namespace FMFileEditor
 
                 for (int j = 0; j < dataTable.Columns.Count; j++)
                 {
-                    value = j != 0 ? "\"" + dataTable.Rows[i].ItemArray[j].ToString() + "\"" : dataTable.Rows[i].ItemArray[j].ToString();
+                    value = j != 0 ? "\"" + dataTable.Rows[i].ItemArray[j].ToString().Trim() + "\"" : dataTable.Rows[i].ItemArray[j].ToString().Trim();
 
                     if (change2 != null)
                     {
