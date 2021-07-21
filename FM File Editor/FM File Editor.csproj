@@ -9,6 +9,8 @@
     <Authors>Kenneth Lund</Authors>
     <Product>FM File Editor</Product>
     <Company />
+    <Version>1.0.1</Version>
+    <ApplicationIcon>Football.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>

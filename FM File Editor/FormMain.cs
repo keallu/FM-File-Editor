@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Linq;
@@ -81,7 +82,48 @@ namespace FMFileEditor
             dataGridViewAwards.DataSource = awards;
         }
 
+        private void newToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            NewFile();
+        }
+
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFile();
+        }
+
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFile();
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Exit();
+        }
+
         private void toolStripButtonNew_Click(object sender, EventArgs e)
+        {
+            NewFile();
+        }
+
+        private void toolStripButtonOpen_Click(object sender, EventArgs e)
+        {
+            OpenFile();
+        }
+
+        private void toolStripButtonSave_Click(object sender, EventArgs e)
+        {
+            SaveFile();
+        }
+
+        private void aboutFMFileEditorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form about = new FormAbout();
+            about.ShowDialog();
+        }
+
+        private void NewFile()
         {
             players.Clear();
             clubs.Clear();
@@ -94,7 +136,7 @@ namespace FMFileEditor
             Text = $"FM File Editor";
         }
 
-        private void toolStripButtonOpen_Click(object sender, EventArgs e)
+        private void OpenFile()
         {
             using (OpenFileDialog openFileDialog = new())
             {
@@ -113,8 +155,7 @@ namespace FMFileEditor
                     awards.Clear();
 
                     string[] columns;
-                    int passed = 0;
-                    int failed = 0;
+                    List<string> failedLines = new();
 
                     foreach (string line in File.ReadAllLines(filePath))
                     {
@@ -131,130 +172,95 @@ namespace FMFileEditor
                                     switch (columns[0])
                                     {
                                         case "CHANGE_PLAYER_NAME":
-                                            if (AddToDataTable(players, columns, 4, false, ""))
+                                            if (!AddToDataTable(players, columns, 4, false, ""))
                                             {
-                                                passed++;
-                                            }
-                                            else
-                                            {
-                                                failed++;
+                                                failedLines.Add(line);
                                             }
 
                                             break;
                                         case "CLUB_NAME_CHANGE":
-                                            if (AddToDataTable(clubs, columns, 3, true, "LongName"))
+                                        case "CLUB_LONG_NAME_CHANGE":
+                                            if (!AddToDataTable(clubs, columns, 3, true, "LongName"))
                                             {
-                                                passed++;
-                                            }
-                                            else
-                                            {
-                                                failed++;
+                                                failedLines.Add(line);
                                             }
 
                                             break;
                                         case "CLUB_SHORT_NAME_CHANGE":
-                                            if (AddToDataTable(clubs, columns, 3, true, "ShortName"))
+                                            if (!AddToDataTable(clubs, columns, 3, true, "ShortName"))
                                             {
-                                                passed++;
-                                            }
-                                            else
-                                            {
-                                                failed++;
+                                                failedLines.Add(line);
                                             }
 
                                             break;
                                         case "STADIUM_NAME_CHANGE":
-                                            if (AddToDataTable(stadiums, columns, 3, false, ""))
+                                            if (!AddToDataTable(stadiums, columns, 3, false, ""))
                                             {
-                                                passed++;
-                                            }
-                                            else
-                                            {
-                                                failed++;
+                                                failedLines.Add(line);
                                             }
 
                                             break;
+                                        case "NATION_NAME_CHANGE":
                                         case "NATION_LONG_NAME_CHANGE":
-                                            if (AddToDataTable(nations, columns, 3, true, "LongName"))
+                                            if (!AddToDataTable(nations, columns, 3, true, "LongName"))
                                             {
-                                                passed++;
-                                            }
-                                            else
-                                            {
-                                                failed++;
+                                                failedLines.Add(line);
                                             }
 
                                             break;
                                         case "NATION_SHORT_NAME_CHANGE":
-                                            if (AddToDataTable(nations, columns, 3, true, "ShortName"))
+                                            if (!AddToDataTable(nations, columns, 3, true, "ShortName"))
                                             {
-                                                passed++;
-                                            }
-                                            else
-                                            {
-                                                failed++;
+                                                failedLines.Add(line);
                                             }
 
                                             break;
                                         case "CITY_NAME_CHANGE":
-                                            if (AddToDataTable(cities, columns, 3, false, ""))
+                                            if (!AddToDataTable(cities, columns, 3, false, ""))
                                             {
-                                                passed++;
-                                            }
-                                            else
-                                            {
-                                                failed++;
+                                                failedLines.Add(line);
                                             }
 
                                             break;
+                                        case "COMP_NAME_CHANGE":
                                         case "COMP_LONG_NAME_CHANGE":
-                                            if (AddToDataTable(competitions, columns, 3, true, "LongName"))
+                                            if (!AddToDataTable(competitions, columns, 3, true, "LongName"))
                                             {
-                                                passed++;
-                                            }
-                                            else
-                                            {
-                                                failed++;
+                                                failedLines.Add(line);
                                             }
 
                                             break;
                                         case "COMP_SHORT_NAME_CHANGE":
-                                            if (AddToDataTable(competitions, columns, 3, true, "ShortName"))
+                                            if (!AddToDataTable(competitions, columns, 3, true, "ShortName"))
                                             {
-                                                passed++;
-                                            }
-                                            else
-                                            {
-                                                failed++;
+                                                failedLines.Add(line);
                                             }
 
                                             break;
+                                        case "AWARD_NAME_CHANGE":
                                         case "AWARD_LONG_NAME_CHANGE":
-                                            if (AddToDataTable(awards, columns, 3, true, "LongName"))
+                                            if (!AddToDataTable(awards, columns, 3, true, "LongName"))
                                             {
-                                                passed++;
-                                            }
-                                            else
-                                            {
-                                                failed++;
+                                                failedLines.Add(line);
                                             }
 
                                             break;
                                         case "AWARD_SHORT_NAME_CHANGE":
-                                            if (AddToDataTable(awards, columns, 3, true, "ShortName"))
+                                            if (!AddToDataTable(awards, columns, 3, true, "ShortName"))
                                             {
-                                                passed++;
-                                            }
-                                            else
-                                            {
-                                                failed++;
+                                                failedLines.Add(line);
                                             }
 
                                             break;
                                         default:
+                                            failedLines.Add(line);
 
                                             break;
                                     }
+                                }
+                                else
+                                {
+                                    failedLines.Add(line);
                                 }
                             }
                         }
@@ -262,18 +268,11 @@ namespace FMFileEditor
 
                     Text = $"FM File Editor - {filePath}";
 
-                    string message;
-
-                    if (failed > 0)
+                    if (failedLines.Count > 0)
                     {
-                        message = $"{passed} changes was imported while {failed} failed because of syntax error or missing arguments.";
+                        Form error = new FormError(failedLines);
+                        error.ShowDialog();
                     }
-                    else
-                    {
-                        message = $"{passed} changes was imported.";
-                    }
-
-                    MessageBox.Show(message, "File opened and changes imported");
                 }
             }
         }
@@ -308,7 +307,7 @@ namespace FMFileEditor
             }
         }
 
-        private void toolStripButtonSave_Click(object sender, EventArgs e)
+        private void SaveFile()
         {
             Stream stream;
             SaveFileDialog saveFileDialog = new();
@@ -379,6 +378,11 @@ namespace FMFileEditor
                     streamWriter.WriteLine(line1);
                 }
             }
+        }
+
+        private void Exit()
+        {
+            Application.Exit();
         }
     }
 }

@@ -31,6 +31,7 @@ namespace FMFileEditor
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.toolStripMain = new System.Windows.Forms.ToolStrip();
+            this.toolStripButtonNew = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonOpen = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonSave = new System.Windows.Forms.ToolStripButton();
             this.tabControlMain = new System.Windows.Forms.TabControl();
@@ -74,7 +75,15 @@ namespace FMFileEditor
             this.ColumnAwardsLongName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnAwardsShortName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnAwardsLanguage = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.toolStripButtonNew = new System.Windows.Forms.ToolStripButton();
+            this.menuStripMain = new System.Windows.Forms.MenuStrip();
+            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutFMFileEditorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMain.SuspendLayout();
             this.tabControlMain.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -91,6 +100,7 @@ namespace FMFileEditor
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCompetitions)).BeginInit();
             this.tabPage7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAwards)).BeginInit();
+            this.menuStripMain.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStripMain
@@ -101,28 +111,42 @@ namespace FMFileEditor
             this.toolStripButtonNew,
             this.toolStripButtonOpen,
             this.toolStripButtonSave});
-            this.toolStripMain.Location = new System.Drawing.Point(0, 0);
+            this.toolStripMain.Location = new System.Drawing.Point(0, 28);
             this.toolStripMain.Name = "toolStripMain";
-            this.toolStripMain.Size = new System.Drawing.Size(1292, 27);
+            this.toolStripMain.Size = new System.Drawing.Size(1292, 55);
             this.toolStripMain.TabIndex = 0;
             this.toolStripMain.Text = "toolStrip";
             // 
+            // toolStripButtonNew
+            // 
+            this.toolStripButtonNew.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonNew.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonNew.Image")));
+            this.toolStripButtonNew.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripButtonNew.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonNew.Name = "toolStripButtonNew";
+            this.toolStripButtonNew.Size = new System.Drawing.Size(52, 52);
+            this.toolStripButtonNew.Text = "New";
+            this.toolStripButtonNew.Click += new System.EventHandler(this.toolStripButtonNew_Click);
+            // 
             // toolStripButtonOpen
             // 
-            this.toolStripButtonOpen.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButtonOpen.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.toolStripButtonOpen.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonOpen.Image")));
+            this.toolStripButtonOpen.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolStripButtonOpen.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonOpen.Name = "toolStripButtonOpen";
-            this.toolStripButtonOpen.Size = new System.Drawing.Size(49, 24);
+            this.toolStripButtonOpen.Size = new System.Drawing.Size(52, 52);
             this.toolStripButtonOpen.Text = "Open";
             this.toolStripButtonOpen.Click += new System.EventHandler(this.toolStripButtonOpen_Click);
             // 
             // toolStripButtonSave
             // 
-            this.toolStripButtonSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButtonSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonSave.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonSave.Image")));
+            this.toolStripButtonSave.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolStripButtonSave.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonSave.Name = "toolStripButtonSave";
-            this.toolStripButtonSave.Size = new System.Drawing.Size(44, 24);
+            this.toolStripButtonSave.Size = new System.Drawing.Size(52, 52);
             this.toolStripButtonSave.Text = "Save";
             this.toolStripButtonSave.Click += new System.EventHandler(this.toolStripButtonSave_Click);
             // 
@@ -136,10 +160,10 @@ namespace FMFileEditor
             this.tabControlMain.Controls.Add(this.tabPage6);
             this.tabControlMain.Controls.Add(this.tabPage7);
             this.tabControlMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControlMain.Location = new System.Drawing.Point(0, 27);
+            this.tabControlMain.Location = new System.Drawing.Point(0, 83);
             this.tabControlMain.Name = "tabControlMain";
             this.tabControlMain.SelectedIndex = 0;
-            this.tabControlMain.Size = new System.Drawing.Size(1292, 715);
+            this.tabControlMain.Size = new System.Drawing.Size(1292, 659);
             this.tabControlMain.TabIndex = 1;
             // 
             // tabPage1
@@ -148,7 +172,7 @@ namespace FMFileEditor
             this.tabPage1.Location = new System.Drawing.Point(4, 29);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1284, 682);
+            this.tabPage1.Size = new System.Drawing.Size(1284, 626);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Players";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -167,7 +191,7 @@ namespace FMFileEditor
             this.dataGridViewPlayers.Name = "dataGridViewPlayers";
             this.dataGridViewPlayers.RowHeadersWidth = 51;
             this.dataGridViewPlayers.RowTemplate.Height = 29;
-            this.dataGridViewPlayers.Size = new System.Drawing.Size(1278, 676);
+            this.dataGridViewPlayers.Size = new System.Drawing.Size(1278, 620);
             this.dataGridViewPlayers.TabIndex = 0;
             // 
             // ColumnPlayersID
@@ -204,7 +228,7 @@ namespace FMFileEditor
             this.tabPage2.Location = new System.Drawing.Point(4, 29);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1284, 682);
+            this.tabPage2.Size = new System.Drawing.Size(1284, 626);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Clubs";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -223,7 +247,7 @@ namespace FMFileEditor
             this.dataGridViewClubs.Name = "dataGridViewClubs";
             this.dataGridViewClubs.RowHeadersWidth = 51;
             this.dataGridViewClubs.RowTemplate.Height = 29;
-            this.dataGridViewClubs.Size = new System.Drawing.Size(1278, 676);
+            this.dataGridViewClubs.Size = new System.Drawing.Size(1278, 620);
             this.dataGridViewClubs.TabIndex = 1;
             // 
             // ColumnClubsID
@@ -260,7 +284,7 @@ namespace FMFileEditor
             this.tabPage3.Location = new System.Drawing.Point(4, 29);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(1284, 682);
+            this.tabPage3.Size = new System.Drawing.Size(1284, 626);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Stadiums";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -278,7 +302,7 @@ namespace FMFileEditor
             this.dataGridViewStadiums.Name = "dataGridViewStadiums";
             this.dataGridViewStadiums.RowHeadersWidth = 51;
             this.dataGridViewStadiums.RowTemplate.Height = 29;
-            this.dataGridViewStadiums.Size = new System.Drawing.Size(1278, 676);
+            this.dataGridViewStadiums.Size = new System.Drawing.Size(1278, 620);
             this.dataGridViewStadiums.TabIndex = 2;
             // 
             // ColumnStadiumsID
@@ -308,7 +332,7 @@ namespace FMFileEditor
             this.tabPage4.Location = new System.Drawing.Point(4, 29);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(1284, 682);
+            this.tabPage4.Size = new System.Drawing.Size(1284, 626);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Nations";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -327,7 +351,7 @@ namespace FMFileEditor
             this.dataGridViewNations.Name = "dataGridViewNations";
             this.dataGridViewNations.RowHeadersWidth = 51;
             this.dataGridViewNations.RowTemplate.Height = 29;
-            this.dataGridViewNations.Size = new System.Drawing.Size(1278, 676);
+            this.dataGridViewNations.Size = new System.Drawing.Size(1278, 620);
             this.dataGridViewNations.TabIndex = 2;
             // 
             // ColumnNationsID
@@ -364,7 +388,7 @@ namespace FMFileEditor
             this.tabPage5.Location = new System.Drawing.Point(4, 29);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(1284, 682);
+            this.tabPage5.Size = new System.Drawing.Size(1284, 626);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "Cities";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -382,7 +406,7 @@ namespace FMFileEditor
             this.dataGridViewCities.Name = "dataGridViewCities";
             this.dataGridViewCities.RowHeadersWidth = 51;
             this.dataGridViewCities.RowTemplate.Height = 29;
-            this.dataGridViewCities.Size = new System.Drawing.Size(1278, 676);
+            this.dataGridViewCities.Size = new System.Drawing.Size(1278, 620);
             this.dataGridViewCities.TabIndex = 3;
             // 
             // ColumnCitiesID
@@ -412,7 +436,7 @@ namespace FMFileEditor
             this.tabPage6.Location = new System.Drawing.Point(4, 29);
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage6.Size = new System.Drawing.Size(1284, 682);
+            this.tabPage6.Size = new System.Drawing.Size(1284, 626);
             this.tabPage6.TabIndex = 5;
             this.tabPage6.Text = "Competitions";
             this.tabPage6.UseVisualStyleBackColor = true;
@@ -431,7 +455,7 @@ namespace FMFileEditor
             this.dataGridViewCompetitions.Name = "dataGridViewCompetitions";
             this.dataGridViewCompetitions.RowHeadersWidth = 51;
             this.dataGridViewCompetitions.RowTemplate.Height = 29;
-            this.dataGridViewCompetitions.Size = new System.Drawing.Size(1278, 676);
+            this.dataGridViewCompetitions.Size = new System.Drawing.Size(1278, 620);
             this.dataGridViewCompetitions.TabIndex = 2;
             // 
             // ColumnCompetitionsID
@@ -468,7 +492,7 @@ namespace FMFileEditor
             this.tabPage7.Location = new System.Drawing.Point(4, 29);
             this.tabPage7.Name = "tabPage7";
             this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage7.Size = new System.Drawing.Size(1284, 682);
+            this.tabPage7.Size = new System.Drawing.Size(1284, 626);
             this.tabPage7.TabIndex = 6;
             this.tabPage7.Text = "Awards";
             this.tabPage7.UseVisualStyleBackColor = true;
@@ -487,7 +511,7 @@ namespace FMFileEditor
             this.dataGridViewAwards.Name = "dataGridViewAwards";
             this.dataGridViewAwards.RowHeadersWidth = 51;
             this.dataGridViewAwards.RowTemplate.Height = 29;
-            this.dataGridViewAwards.Size = new System.Drawing.Size(1278, 676);
+            this.dataGridViewAwards.Size = new System.Drawing.Size(1278, 620);
             this.dataGridViewAwards.TabIndex = 2;
             // 
             // ColumnAwardsID
@@ -518,15 +542,77 @@ namespace FMFileEditor
             this.ColumnAwardsLanguage.MinimumWidth = 6;
             this.ColumnAwardsLanguage.Name = "ColumnAwardsLanguage";
             // 
-            // toolStripButtonNew
+            // menuStripMain
             // 
-            this.toolStripButtonNew.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButtonNew.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonNew.Image")));
-            this.toolStripButtonNew.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonNew.Name = "toolStripButtonNew";
-            this.toolStripButtonNew.Size = new System.Drawing.Size(43, 24);
-            this.toolStripButtonNew.Text = "New";
-            this.toolStripButtonNew.Click += new System.EventHandler(this.toolStripButtonNew_Click);
+            this.menuStripMain.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.menuStripMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem,
+            this.helpToolStripMenuItem});
+            this.menuStripMain.Location = new System.Drawing.Point(0, 0);
+            this.menuStripMain.Name = "menuStripMain";
+            this.menuStripMain.Size = new System.Drawing.Size(1292, 28);
+            this.menuStripMain.TabIndex = 2;
+            this.menuStripMain.Text = "menuStrip";
+            // 
+            // fileToolStripMenuItem
+            // 
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.newToolStripMenuItem,
+            this.openToolStripMenuItem,
+            this.saveToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.exitToolStripMenuItem});
+            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(46, 24);
+            this.fileToolStripMenuItem.Text = "File";
+            // 
+            // newToolStripMenuItem
+            // 
+            this.newToolStripMenuItem.Name = "newToolStripMenuItem";
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.newToolStripMenuItem.Text = "New";
+            this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
+            // 
+            // openToolStripMenuItem
+            // 
+            this.openToolStripMenuItem.Name = "openToolStripMenuItem";
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.openToolStripMenuItem.Text = "Open";
+            this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
+            // 
+            // saveToolStripMenuItem
+            // 
+            this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.saveToolStripMenuItem.Text = "Save";
+            this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(221, 6);
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            // 
+            // helpToolStripMenuItem
+            // 
+            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.aboutFMFileEditorToolStripMenuItem});
+            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(55, 24);
+            this.helpToolStripMenuItem.Text = "Help";
+            // 
+            // aboutFMFileEditorToolStripMenuItem
+            // 
+            this.aboutFMFileEditorToolStripMenuItem.Name = "aboutFMFileEditorToolStripMenuItem";
+            this.aboutFMFileEditorToolStripMenuItem.Size = new System.Drawing.Size(228, 26);
+            this.aboutFMFileEditorToolStripMenuItem.Text = "About FM File Editor";
+            this.aboutFMFileEditorToolStripMenuItem.Click += new System.EventHandler(this.aboutFMFileEditorToolStripMenuItem_Click);
             // 
             // FormMain
             // 
@@ -535,6 +621,9 @@ namespace FMFileEditor
             this.ClientSize = new System.Drawing.Size(1292, 742);
             this.Controls.Add(this.tabControlMain);
             this.Controls.Add(this.toolStripMain);
+            this.Controls.Add(this.menuStripMain);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MainMenuStrip = this.menuStripMain;
             this.Name = "FormMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FM File Editor";
@@ -555,6 +644,8 @@ namespace FMFileEditor
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCompetitions)).EndInit();
             this.tabPage7.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAwards)).EndInit();
+            this.menuStripMain.ResumeLayout(false);
+            this.menuStripMain.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -607,6 +698,15 @@ namespace FMFileEditor
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnAwardsShortName;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnAwardsLanguage;
         private System.Windows.Forms.ToolStripButton toolStripButtonNew;
+        private System.Windows.Forms.MenuStrip menuStripMain;
+        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem aboutFMFileEditorToolStripMenuItem;
     }
 }
 
