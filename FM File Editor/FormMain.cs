@@ -102,6 +102,24 @@ namespace FMFileEditor
             Exit();
         }
 
+        private void analyzerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form analyzer = new FormAnalyzer();
+            analyzer.Show();
+        }
+
+        private void checkForUpdatesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form checkForUpdates = new FormCheckForUpdates();
+            checkForUpdates.ShowDialog();
+        }
+
+        private void aboutFMFileEditorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form about = new FormAbout();
+            about.ShowDialog();
+        }
+
         private void toolStripButtonNew_Click(object sender, EventArgs e)
         {
             NewFile();
@@ -115,12 +133,6 @@ namespace FMFileEditor
         private void toolStripButtonSave_Click(object sender, EventArgs e)
         {
             SaveFile();
-        }
-
-        private void aboutFMFileEditorToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Form about = new FormAbout();
-            about.ShowDialog();
         }
 
         private void NewFile()
@@ -349,7 +361,7 @@ namespace FMFileEditor
 
                 for (int j = 0; j < dataTable.Columns.Count; j++)
                 {
-                    value = j != 0 ? "\"" + dataTable.Rows[i].ItemArray[j].ToString().Trim() + "\"" : dataTable.Rows[i].ItemArray[j].ToString().Trim();
+                    value = j != 0 ? "\"" + dataTable.Rows[i].ItemArray[j].ToString().Replace("\"", "").Trim() + "\"" : dataTable.Rows[i].ItemArray[j].ToString().Replace("\"", "").Trim();
 
                     if (change2 != null)
                     {
