@@ -20,6 +20,7 @@ namespace FMFileEditor
         {
             files = new();
             files.Columns.Add("File", typeof(string));
+            files.Columns.Add("Directory", typeof(string));
             files.Columns.Add("Path", typeof(string));
 
             dataGridViewFiles.DataSource = files;
@@ -33,6 +34,11 @@ namespace FMFileEditor
         private void toolStripButtonAnalyze_Click(object sender, EventArgs e)
         {
             Analyze();
+        }
+
+        private void toolStripMenuItemFilesDelete_Click(object sender, EventArgs e)
+        {
+            Delete();
         }
 
         private void Browse()
@@ -53,11 +59,25 @@ namespace FMFileEditor
 
             if (Directory.Exists(toolStripTextBoxPath.Text))
             {
-                string[] dirs = Directory.GetFiles(toolStripTextBoxPath.Text, "*.lnc", SearchOption.AllDirectories);
-
-                foreach (string dir in dirs)
+                foreach (string file in Directory.GetFiles(toolStripTextBoxPath.Text, "*.lnc", SearchOption.AllDirectories))
                 {
-                    files.Rows.Add(Path.GetFileName(dir), ".." + Path.GetDirectoryName(dir).Substring(toolStripTextBoxPath.Text.Length));
+                    files.Rows.Add(Path.GetFileName(file), ".." + Path.GetDirectoryName(file).Substring(toolStripTextBoxPath.Text.Length), Path.GetFullPath(file));
+                }
+            }
+        }
+
+        private void Delete()
+        {
+            if (dataGridViewFiles.SelectedRows.Count > 0)
+            {
+                if (MessageBox.Show($"Are you sure you want to delete the selected {dataGridViewFiles.SelectedRows.Count} files?", $"Confirm deletion", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    foreach (DataGridViewRow row in dataGridViewFiles.SelectedRows)
+                    {
+                        File.Delete(row.Cells["Path"].Value.ToString());
+
+                        dataGridViewFiles.Rows.RemoveAt(row.Index);
+                    }
                 }
             }
         }

@@ -29,6 +29,7 @@ namespace FMFileEditor
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.toolStripMain = new System.Windows.Forms.ToolStrip();
             this.toolStripButtonNew = new System.Windows.Forms.ToolStripButton();
@@ -41,6 +42,9 @@ namespace FMFileEditor
             this.ColumnPlayersFirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnPlayersCommonName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnPlayersSecondName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.contextMenuStripMain = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuItemMainInsert = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemMainDelete = new System.Windows.Forms.ToolStripMenuItem();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.dataGridViewClubs = new System.Windows.Forms.DataGridView();
             this.ColumnClubsID = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -92,6 +96,7 @@ namespace FMFileEditor
             this.tabControlMain.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPlayers)).BeginInit();
+            this.contextMenuStripMain.SuspendLayout();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewClubs)).BeginInit();
             this.tabPage3.SuspendLayout();
@@ -190,6 +195,7 @@ namespace FMFileEditor
             this.ColumnPlayersFirstName,
             this.ColumnPlayersCommonName,
             this.ColumnPlayersSecondName});
+            this.dataGridViewPlayers.ContextMenuStrip = this.contextMenuStripMain;
             this.dataGridViewPlayers.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridViewPlayers.Location = new System.Drawing.Point(3, 3);
             this.dataGridViewPlayers.Name = "dataGridViewPlayers";
@@ -226,6 +232,29 @@ namespace FMFileEditor
             this.ColumnPlayersSecondName.MinimumWidth = 6;
             this.ColumnPlayersSecondName.Name = "ColumnPlayersSecondName";
             // 
+            // contextMenuStripMain
+            // 
+            this.contextMenuStripMain.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.contextMenuStripMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItemMainInsert,
+            this.toolStripMenuItemMainDelete});
+            this.contextMenuStripMain.Name = "contextMenuStripMain";
+            this.contextMenuStripMain.Size = new System.Drawing.Size(123, 52);
+            // 
+            // toolStripMenuItemMainInsert
+            // 
+            this.toolStripMenuItemMainInsert.Name = "toolStripMenuItemMainInsert";
+            this.toolStripMenuItemMainInsert.Size = new System.Drawing.Size(122, 24);
+            this.toolStripMenuItemMainInsert.Text = "Insert";
+            this.toolStripMenuItemMainInsert.Click += new System.EventHandler(this.toolStripMenuItemMainInsert_Click);
+            // 
+            // toolStripMenuItemMainDelete
+            // 
+            this.toolStripMenuItemMainDelete.Name = "toolStripMenuItemMainDelete";
+            this.toolStripMenuItemMainDelete.Size = new System.Drawing.Size(122, 24);
+            this.toolStripMenuItemMainDelete.Text = "Delete";
+            this.toolStripMenuItemMainDelete.Click += new System.EventHandler(this.toolStripMenuItemMainDelete_Click);
+            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.dataGridViewClubs);
@@ -246,6 +275,7 @@ namespace FMFileEditor
             this.ColumnClubsLongName,
             this.ColumnClubsShortName,
             this.ColumnClubsLanguage});
+            this.dataGridViewClubs.ContextMenuStrip = this.contextMenuStripMain;
             this.dataGridViewClubs.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridViewClubs.Location = new System.Drawing.Point(3, 3);
             this.dataGridViewClubs.Name = "dataGridViewClubs";
@@ -301,6 +331,7 @@ namespace FMFileEditor
             this.ColumnStadiumsID,
             this.ColumnStadiumsName,
             this.ColumnStadiumsLanguage});
+            this.dataGridViewStadiums.ContextMenuStrip = this.contextMenuStripMain;
             this.dataGridViewStadiums.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridViewStadiums.Location = new System.Drawing.Point(3, 3);
             this.dataGridViewStadiums.Name = "dataGridViewStadiums";
@@ -350,6 +381,7 @@ namespace FMFileEditor
             this.ColumnNationsLongName,
             this.ColumnNationsShortName,
             this.ColumnNationsLanguage});
+            this.dataGridViewNations.ContextMenuStrip = this.contextMenuStripMain;
             this.dataGridViewNations.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridViewNations.Location = new System.Drawing.Point(3, 3);
             this.dataGridViewNations.Name = "dataGridViewNations";
@@ -405,6 +437,7 @@ namespace FMFileEditor
             this.ColumnCitiesID,
             this.ColumnCitiesName,
             this.ColumnCitiesLanguage});
+            this.dataGridViewCities.ContextMenuStrip = this.contextMenuStripMain;
             this.dataGridViewCities.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridViewCities.Location = new System.Drawing.Point(3, 3);
             this.dataGridViewCities.Name = "dataGridViewCities";
@@ -454,6 +487,7 @@ namespace FMFileEditor
             this.ColumnCompetitionsLongName,
             this.ColumnCompetitionsShortName,
             this.ColumnCompetitionsLanguage});
+            this.dataGridViewCompetitions.ContextMenuStrip = this.contextMenuStripMain;
             this.dataGridViewCompetitions.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridViewCompetitions.Location = new System.Drawing.Point(3, 3);
             this.dataGridViewCompetitions.Name = "dataGridViewCompetitions";
@@ -510,6 +544,7 @@ namespace FMFileEditor
             this.ColumnAwardsLongName,
             this.ColumnAwardsShortName,
             this.ColumnAwardsLanguage});
+            this.dataGridViewAwards.ContextMenuStrip = this.contextMenuStripMain;
             this.dataGridViewAwards.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridViewAwards.Location = new System.Drawing.Point(3, 3);
             this.dataGridViewAwards.Name = "dataGridViewAwards";
@@ -666,6 +701,7 @@ namespace FMFileEditor
             this.tabControlMain.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPlayers)).EndInit();
+            this.contextMenuStripMain.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewClubs)).EndInit();
             this.tabPage3.ResumeLayout(false);
@@ -745,6 +781,9 @@ namespace FMFileEditor
         private System.Windows.Forms.ToolStripMenuItem analyzerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem checkForUpdatesToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparatorHelp1;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStripMain;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemMainInsert;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemMainDelete;
     }
 }
 

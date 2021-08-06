@@ -135,6 +135,31 @@ namespace FMFileEditor
             SaveFile();
         }
 
+        private void toolStripMenuItemMainInsert_Click(object sender, EventArgs e)
+        {
+            if (ActiveForm.ActiveControl is DataGridView)
+            {
+                DataGridView dataGridView = ActiveForm.ActiveControl as DataGridView;
+                DataTable dataTable = dataGridView.DataSource as DataTable;
+
+                DataRow row = dataTable.NewRow();
+                row["Id"] = "";
+
+                dataTable.Rows.InsertAt(row, dataGridView.CurrentRow.Index);
+            }
+        }
+
+        private void toolStripMenuItemMainDelete_Click(object sender, EventArgs e)
+        {
+            if (ActiveForm.ActiveControl is DataGridView)
+            {
+                DataGridView dataGridView = ActiveForm.ActiveControl as DataGridView;
+                DataTable dataTable = dataGridView.DataSource as DataTable;
+
+                dataTable.Rows.RemoveAt(dataGridView.CurrentRow.Index);
+            }
+        }
+
         private void NewFile()
         {
             players.Clear();
