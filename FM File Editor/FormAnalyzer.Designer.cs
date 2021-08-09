@@ -37,12 +37,12 @@ namespace FMFileEditor
             this.toolStripButtonAnalyze = new System.Windows.Forms.ToolStripButton();
             this.tabPageFiles = new System.Windows.Forms.TabPage();
             this.dataGridViewFiles = new System.Windows.Forms.DataGridView();
-            this.contextMenuStripFiles = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.toolStripMenuItemFilesDelete = new System.Windows.Forms.ToolStripMenuItem();
-            this.tabControlAnalyzer = new System.Windows.Forms.TabControl();
             this.ColumnFile = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnDirectory = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnPath = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.contextMenuStripFiles = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuItemFilesDelete = new System.Windows.Forms.ToolStripMenuItem();
+            this.tabControlAnalyzer = new System.Windows.Forms.TabControl();
             this.toolStripAnalyzer.SuspendLayout();
             this.tabPageFiles.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewFiles)).BeginInit();
@@ -68,8 +68,6 @@ namespace FMFileEditor
             // 
             this.toolStripTextBoxPath.Name = "toolStripTextBoxPath";
             this.toolStripTextBoxPath.Size = new System.Drawing.Size(800, 27);
-            this.toolStripTextBoxPath.Text = "C:\\Program Files (x86)\\Steam\\steamapps\\common\\Football Manager 2021\\data\\database" +
-    "\\db";
             // 
             // toolStripButtonBrowse
             // 
@@ -123,6 +121,30 @@ namespace FMFileEditor
             this.dataGridViewFiles.Size = new System.Drawing.Size(1139, 436);
             this.dataGridViewFiles.TabIndex = 0;
             // 
+            // ColumnFile
+            // 
+            this.ColumnFile.DataPropertyName = "File";
+            this.ColumnFile.HeaderText = "File";
+            this.ColumnFile.MinimumWidth = 6;
+            this.ColumnFile.Name = "ColumnFile";
+            this.ColumnFile.ReadOnly = true;
+            // 
+            // ColumnDirectory
+            // 
+            this.ColumnDirectory.DataPropertyName = "Directory";
+            this.ColumnDirectory.HeaderText = "Directory";
+            this.ColumnDirectory.MinimumWidth = 6;
+            this.ColumnDirectory.Name = "ColumnDirectory";
+            this.ColumnDirectory.ReadOnly = true;
+            // 
+            // ColumnPath
+            // 
+            this.ColumnPath.DataPropertyName = "Path";
+            this.ColumnPath.HeaderText = "Path";
+            this.ColumnPath.MinimumWidth = 6;
+            this.ColumnPath.Name = "ColumnPath";
+            this.ColumnPath.ReadOnly = true;
+            // 
             // contextMenuStripFiles
             // 
             this.contextMenuStripFiles.ImageScalingSize = new System.Drawing.Size(20, 20);
@@ -147,30 +169,6 @@ namespace FMFileEditor
             this.tabControlAnalyzer.SelectedIndex = 0;
             this.tabControlAnalyzer.Size = new System.Drawing.Size(1153, 475);
             this.tabControlAnalyzer.TabIndex = 5;
-            // 
-            // ColumnFile
-            // 
-            this.ColumnFile.DataPropertyName = "File";
-            this.ColumnFile.HeaderText = "File";
-            this.ColumnFile.MinimumWidth = 6;
-            this.ColumnFile.Name = "ColumnFile";
-            this.ColumnFile.ReadOnly = true;
-            // 
-            // ColumnDirectory
-            // 
-            this.ColumnDirectory.DataPropertyName = "Directory";
-            this.ColumnDirectory.HeaderText = "Directory";
-            this.ColumnDirectory.MinimumWidth = 6;
-            this.ColumnDirectory.Name = "ColumnDirectory";
-            this.ColumnDirectory.ReadOnly = true;
-            // 
-            // ColumnPath
-            // 
-            this.ColumnPath.DataPropertyName = "Path";
-            this.ColumnPath.HeaderText = "Path";
-            this.ColumnPath.MinimumWidth = 6;
-            this.ColumnPath.Name = "ColumnPath";
-            this.ColumnPath.ReadOnly = true;
             // 
             // FormAnalyzer
             // 

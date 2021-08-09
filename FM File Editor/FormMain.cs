@@ -82,6 +82,16 @@ namespace FMFileEditor
             dataGridViewAwards.DataSource = awards;
         }
 
+        private void FormMain_Load(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.Upgrade();
+        }
+
+        private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Properties.Settings.Default.Save();
+        }
+
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
             NewFile();
@@ -106,6 +116,12 @@ namespace FMFileEditor
         {
             Form analyzer = new FormAnalyzer();
             analyzer.Show();
+        }
+
+        private void optionsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form options = new FormOptions();
+            options.ShowDialog();
         }
 
         private void checkForUpdatesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -178,6 +194,7 @@ namespace FMFileEditor
             using (OpenFileDialog openFileDialog = new())
             {
                 openFileDialog.Filter = "lnc Files (*.lnc)|*.lnc";
+                openFileDialog.InitialDirectory = Properties.Settings.Default.DefaultFilePath;
 
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
@@ -350,6 +367,7 @@ namespace FMFileEditor
             SaveFileDialog saveFileDialog = new();
 
             saveFileDialog.Filter = "lnc Files (*.lnc)| *.lnc";
+            saveFileDialog.InitialDirectory = Properties.Settings.Default.DefaultFilePath;
 
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {

@@ -88,6 +88,8 @@ namespace FMFileEditor
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.analyzerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparatorTools1 = new System.Windows.Forms.ToolStripSeparator();
+            this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.checkForUpdatesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparatorHelp1 = new System.Windows.Forms.ToolStripSeparator();
@@ -642,7 +644,9 @@ namespace FMFileEditor
             // toolsToolStripMenuItem
             // 
             this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.analyzerToolStripMenuItem});
+            this.analyzerToolStripMenuItem,
+            this.toolStripSeparatorTools1,
+            this.optionsToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             this.toolsToolStripMenuItem.Size = new System.Drawing.Size(58, 24);
             this.toolsToolStripMenuItem.Text = "Tools";
@@ -650,9 +654,21 @@ namespace FMFileEditor
             // analyzerToolStripMenuItem
             // 
             this.analyzerToolStripMenuItem.Name = "analyzerToolStripMenuItem";
-            this.analyzerToolStripMenuItem.Size = new System.Drawing.Size(158, 26);
+            this.analyzerToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.analyzerToolStripMenuItem.Text = "Analyzer...";
             this.analyzerToolStripMenuItem.Click += new System.EventHandler(this.analyzerToolStripMenuItem_Click);
+            // 
+            // toolStripSeparatorTools1
+            // 
+            this.toolStripSeparatorTools1.Name = "toolStripSeparatorTools1";
+            this.toolStripSeparatorTools1.Size = new System.Drawing.Size(221, 6);
+            // 
+            // optionsToolStripMenuItem
+            // 
+            this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
+            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.optionsToolStripMenuItem.Text = "Options...";
+            this.optionsToolStripMenuItem.Click += new System.EventHandler(this.optionsToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
@@ -696,6 +712,8 @@ namespace FMFileEditor
             this.Name = "FormMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FM File Editor";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormMain_FormClosing);
+            this.Load += new System.EventHandler(this.FormMain_Load);
             this.toolStripMain.ResumeLayout(false);
             this.toolStripMain.PerformLayout();
             this.tabControlMain.ResumeLayout(false);
@@ -784,6 +802,8 @@ namespace FMFileEditor
         private System.Windows.Forms.ContextMenuStrip contextMenuStripMain;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemMainInsert;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemMainDelete;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparatorTools1;
+        private System.Windows.Forms.ToolStripMenuItem optionsToolStripMenuItem;
     }
 }
 

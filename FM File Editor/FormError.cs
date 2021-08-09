@@ -19,7 +19,7 @@ namespace FMFileEditor
 
         private void Init()
         {
-            labelError.Text = $"The following {list.Count} lines was not imported because they contained either unknown commands or invalid arguments:";
+            labelError.Text = $"The following {list.Count} lines was not imported because they contained either unknown/invalid commands or arguments:";
 
             foreach (string line in list)
             {

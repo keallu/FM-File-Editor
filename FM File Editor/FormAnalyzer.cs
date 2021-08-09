@@ -18,12 +18,14 @@ namespace FMFileEditor
 
         private void Init()
         {
+            toolStripTextBoxPath.Text = Properties.Settings.Default.DefaultFilePath;
+
             files = new();
             files.Columns.Add("File", typeof(string));
             files.Columns.Add("Directory", typeof(string));
             files.Columns.Add("Path", typeof(string));
 
-            dataGridViewFiles.DataSource = files;
+            dataGridViewFiles.DataSource = files;            
         }
 
         private void toolStripButtonBrowse_Click(object sender, EventArgs e)
