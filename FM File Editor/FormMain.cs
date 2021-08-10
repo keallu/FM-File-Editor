@@ -396,6 +396,7 @@ namespace FMFileEditor
             string value;
             string line1;
             string line2;
+            char delimiter = Properties.Settings.Default.Delimiter == 0 ? '\t' : ' ';
 
             for (int i = 0; i < dataTable.Rows.Count; i++)
             {
@@ -410,16 +411,16 @@ namespace FMFileEditor
                     {
                         if (j != 2)
                         {
-                            line1 += '\t' + value;
+                            line1 += delimiter + value;
                         }
                         if (j != 1)
                         {
-                            line2 += '\t' + value;
+                            line2 += delimiter + value;
                         }
                     }
                     else
                     {
-                        line1 += '\t' + value;
+                        line1 += delimiter + value;
                     }
                 }
 

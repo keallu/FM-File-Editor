@@ -33,6 +33,8 @@ namespace FMFileEditor
             this.buttonCancel = new System.Windows.Forms.Button();
             this.buttonOK = new System.Windows.Forms.Button();
             this.groupBoxGeneral = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.comboBoxDelimiter = new System.Windows.Forms.ComboBox();
             this.buttonDefaultFilePathBrowse = new System.Windows.Forms.Button();
             this.labelDefaultFilePath = new System.Windows.Forms.Label();
             this.textBoxDefaultFilePath = new System.Windows.Forms.TextBox();
@@ -61,6 +63,8 @@ namespace FMFileEditor
             // 
             // groupBoxGeneral
             // 
+            this.groupBoxGeneral.Controls.Add(this.label1);
+            this.groupBoxGeneral.Controls.Add(this.comboBoxDelimiter);
             this.groupBoxGeneral.Controls.Add(this.buttonDefaultFilePathBrowse);
             this.groupBoxGeneral.Controls.Add(this.labelDefaultFilePath);
             this.groupBoxGeneral.Controls.Add(this.textBoxDefaultFilePath);
@@ -71,9 +75,30 @@ namespace FMFileEditor
             this.groupBoxGeneral.TabStop = false;
             this.groupBoxGeneral.Text = "General";
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(17, 84);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(204, 20);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "Delimiter (used when saving):";
+            // 
+            // comboBoxDelimiter
+            // 
+            this.comboBoxDelimiter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxDelimiter.FormattingEnabled = true;
+            this.comboBoxDelimiter.Items.AddRange(new object[] {
+            "Tab",
+            "Space"});
+            this.comboBoxDelimiter.Location = new System.Drawing.Point(17, 107);
+            this.comboBoxDelimiter.Name = "comboBoxDelimiter";
+            this.comboBoxDelimiter.Size = new System.Drawing.Size(152, 28);
+            this.comboBoxDelimiter.TabIndex = 3;
+            // 
             // buttonDefaultFilePathBrowse
             // 
-            this.buttonDefaultFilePathBrowse.Location = new System.Drawing.Point(828, 45);
+            this.buttonDefaultFilePathBrowse.Location = new System.Drawing.Point(828, 44);
             this.buttonDefaultFilePathBrowse.Name = "buttonDefaultFilePathBrowse";
             this.buttonDefaultFilePathBrowse.Size = new System.Drawing.Size(94, 29);
             this.buttonDefaultFilePathBrowse.TabIndex = 2;
@@ -86,9 +111,9 @@ namespace FMFileEditor
             this.labelDefaultFilePath.AutoSize = true;
             this.labelDefaultFilePath.Location = new System.Drawing.Point(17, 23);
             this.labelDefaultFilePath.Name = "labelDefaultFilePath";
-            this.labelDefaultFilePath.Size = new System.Drawing.Size(117, 20);
+            this.labelDefaultFilePath.Size = new System.Drawing.Size(120, 20);
             this.labelDefaultFilePath.TabIndex = 1;
-            this.labelDefaultFilePath.Text = "Default file path";
+            this.labelDefaultFilePath.Text = "Default file path:";
             // 
             // textBoxDefaultFilePath
             // 
@@ -128,5 +153,7 @@ namespace FMFileEditor
         private System.Windows.Forms.Button buttonDefaultFilePathBrowse;
         private System.Windows.Forms.Label labelDefaultFilePath;
         private System.Windows.Forms.TextBox textBoxDefaultFilePath;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox comboBoxDelimiter;
     }
 }

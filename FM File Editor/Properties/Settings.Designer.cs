@@ -35,5 +35,17 @@ namespace FMFileEditor.Properties {
                 this["DefaultFilePath"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int Delimiter {
+            get {
+                return ((int)(this["Delimiter"]));
+            }
+            set {
+                this["Delimiter"] = value;
+            }
+        }
     }
 }

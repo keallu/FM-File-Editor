@@ -15,6 +15,7 @@ namespace FMFileEditor
         private void Init()
         {
             textBoxDefaultFilePath.Text = Properties.Settings.Default.DefaultFilePath;
+            comboBoxDelimiter.SelectedIndex = Properties.Settings.Default.Delimiter;
         }
 
         private void buttonDefaultFilePathBrowse_Click(object sender, System.EventArgs e)
@@ -34,6 +35,7 @@ namespace FMFileEditor
             if (Directory.Exists(textBoxDefaultFilePath.Text))
             {
                 Properties.Settings.Default.DefaultFilePath = textBoxDefaultFilePath.Text;
+                Properties.Settings.Default.Delimiter = comboBoxDelimiter.SelectedIndex;
 
                 this.Close();
             }
