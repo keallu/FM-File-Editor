@@ -37,6 +37,7 @@ namespace FMFileEditor
             clubs.Columns.Add("Id", typeof(string));
             clubs.Columns.Add("LongName", typeof(string));
             clubs.Columns.Add("ShortName", typeof(string));
+            clubs.Columns.Add("SixLetterName", typeof(string));
             clubs.Columns.Add("Language", typeof(string));
             clubs.PrimaryKey = new DataColumn[] { clubs.Columns["Id"] };
 
@@ -63,6 +64,7 @@ namespace FMFileEditor
             competitions.Columns.Add("Id", typeof(string));
             competitions.Columns.Add("LongName", typeof(string));
             competitions.Columns.Add("ShortName", typeof(string));
+            competitions.Columns.Add("SixLetterName", typeof(string));
             competitions.Columns.Add("Language", typeof(string));
             competitions.PrimaryKey = new DataColumn[] { competitions.Columns["Id"] };
 
@@ -130,6 +132,12 @@ namespace FMFileEditor
             checkForUpdates.ShowDialog();
         }
 
+        private void releaseNotesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form releaseNotes = new FormReleaseNotes();
+            releaseNotes.ShowDialog();
+        }
+
         private void aboutFMFileEditorToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Form about = new FormAbout();
@@ -193,6 +201,7 @@ namespace FMFileEditor
         {
             using (OpenFileDialog openFileDialog = new())
             {
+                openFileDialog.Title = "Open";
                 openFileDialog.Filter = "lnc Files (*.lnc)|*.lnc";
                 openFileDialog.InitialDirectory = Properties.Settings.Default.DefaultFilePath;
 
@@ -226,11 +235,10 @@ namespace FMFileEditor
                                     switch (columns[0])
                                     {
                                         case "CHANGE_PLAYER_NAME":
-                                            if (!AddToDataTable(players, columns, 4, false, ""))
+                                            if (!AddToDataTable(players, columns, 4, false))
                                             {
                                                 failedLines.Add(line);
                                             }
-
                                             break;
                                         case "CLUB_NAME_CHANGE":
                                         case "CLUB_LONG_NAME_CHANGE":
@@ -238,21 +246,24 @@ namespace FMFileEditor
                                             {
                                                 failedLines.Add(line);
                                             }
-
                                             break;
                                         case "CLUB_SHORT_NAME_CHANGE":
                                             if (!AddToDataTable(clubs, columns, 3, true, "ShortName"))
                                             {
                                                 failedLines.Add(line);
                                             }
-
                                             break;
-                                        case "STADIUM_NAME_CHANGE":
-                                            if (!AddToDataTable(stadiums, columns, 3, false, ""))
+                                        case "CLUB_6LETTER_NAME_CHANGE":
+                                            if (!AddToDataTable(clubs, columns, 3, true, "SixLetterName"))
                                             {
                                                 failedLines.Add(line);
                                             }
-
+                                            break;
+                                        case "STADIUM_NAME_CHANGE":
+                                            if (!AddToDataTable(stadiums, columns, 3, false))
+                                            {
+                                                failedLines.Add(line);
+                                            }
                                             break;
                                         case "NATION_NAME_CHANGE":
                                         case "NATION_LONG_NAME_CHANGE":
@@ -260,21 +271,18 @@ namespace FMFileEditor
                                             {
                                                 failedLines.Add(line);
                                             }
-
                                             break;
                                         case "NATION_SHORT_NAME_CHANGE":
                                             if (!AddToDataTable(nations, columns, 3, true, "ShortName"))
                                             {
                                                 failedLines.Add(line);
                                             }
-
                                             break;
                                         case "CITY_NAME_CHANGE":
-                                            if (!AddToDataTable(cities, columns, 3, false, ""))
+                                            if (!AddToDataTable(cities, columns, 3, false))
                                             {
                                                 failedLines.Add(line);
                                             }
-
                                             break;
                                         case "COMP_NAME_CHANGE":
                                         case "COMP_LONG_NAME_CHANGE":
@@ -282,14 +290,18 @@ namespace FMFileEditor
                                             {
                                                 failedLines.Add(line);
                                             }
-
                                             break;
                                         case "COMP_SHORT_NAME_CHANGE":
                                             if (!AddToDataTable(competitions, columns, 3, true, "ShortName"))
                                             {
                                                 failedLines.Add(line);
                                             }
-
+                                            break;
+                                        case "COMP_6LETTER_NAME_CHANGE":
+                                            if (!AddToDataTable(competitions, columns, 3, true, "SixLetterName"))
+                                            {
+                                                failedLines.Add(line);
+                                            }
                                             break;
                                         case "AWARD_NAME_CHANGE":
                                         case "AWARD_LONG_NAME_CHANGE":
@@ -297,18 +309,15 @@ namespace FMFileEditor
                                             {
                                                 failedLines.Add(line);
                                             }
-
                                             break;
                                         case "AWARD_SHORT_NAME_CHANGE":
                                             if (!AddToDataTable(awards, columns, 3, true, "ShortName"))
                                             {
                                                 failedLines.Add(line);
                                             }
-
                                             break;
                                         default:
                                             failedLines.Add(line);
-
                                             break;
                                     }
                                 }
@@ -331,7 +340,7 @@ namespace FMFileEditor
             }
         }
 
-        private static bool AddToDataTable(DataTable dataTable, string[] columns, int expectedValues, bool multiNaming, string multiNamingLabel)
+        private static bool AddToDataTable(DataTable dataTable, string[] columns, int expectedValues, bool multiCommand = false, string multiCommandLabel = null)
         {
             if (columns.Length == 1 + expectedValues)
             {
@@ -343,14 +352,24 @@ namespace FMFileEditor
 
                 row = dataTable.Rows.Find(values[0]);
 
-                if (row == null)
+                if (multiCommand)
                 {
-                    dataTable.Rows.Add(values);
-                }
-                else if (multiNaming)
-                {
-                    row[multiNamingLabel] = values[1];
+                    if (row == null)
+                    {
+                        row = dataTable.NewRow();
+                        row["Id"] = values[0];
+                        dataTable.Rows.Add(row);
+                    }
+
+                    row[multiCommandLabel] = values[1];
                     row["Language"] = values[expectedValues - 1];
+                }
+                else
+                {
+                    if (row == null)
+                    {
+                        dataTable.Rows.Add(values);
+                    }
                 }
 
                 return true;
@@ -366,6 +385,7 @@ namespace FMFileEditor
             Stream stream;
             SaveFileDialog saveFileDialog = new();
 
+            saveFileDialog.Title = "Save";
             saveFileDialog.Filter = "lnc Files (*.lnc)| *.lnc";
             saveFileDialog.InitialDirectory = Properties.Settings.Default.DefaultFilePath;
 
@@ -375,13 +395,13 @@ namespace FMFileEditor
                 {
                     using (StreamWriter streamWriter = new(stream))
                     {
-                        WriteDataTableToFile(streamWriter, players, "CHANGE_PLAYER_NAME");
-                        WriteDataTableToFile(streamWriter, clubs, "CLUB_NAME_CHANGE", "CLUB_SHORT_NAME_CHANGE");
-                        WriteDataTableToFile(streamWriter, stadiums, "STADIUM_NAME_CHANGE");
-                        WriteDataTableToFile(streamWriter, nations, "NATION_LONG_NAME_CHANGE", "NATION_SHORT_NAME_CHANGE");
-                        WriteDataTableToFile(streamWriter, cities, "CITY_NAME_CHANGE");
-                        WriteDataTableToFile(streamWriter, competitions, "COMP_LONG_NAME_CHANGE", "COMP_SHORT_NAME_CHANGE");
-                        WriteDataTableToFile(streamWriter, awards, "AWARD_LONG_NAME_CHANGE", "AWARD_SHORT_NAME_CHANGE");
+                        WriteDataTableToFile(streamWriter, players, new string[] { "CHANGE_PLAYER_NAME" });
+                        WriteDataTableToFile(streamWriter, clubs, new string[] { "CLUB_LONG_NAME_CHANGE", "CLUB_SHORT_NAME_CHANGE", "CLUB_6LETTER_NAME_CHANGE" });
+                        WriteDataTableToFile(streamWriter, stadiums, new string[] { "STADIUM_NAME_CHANGE" });
+                        WriteDataTableToFile(streamWriter, nations, new string[] { "NATION_LONG_NAME_CHANGE", "NATION_SHORT_NAME_CHANGE" });
+                        WriteDataTableToFile(streamWriter, cities, new string[] { "CITY_NAME_CHANGE" });
+                        WriteDataTableToFile(streamWriter, competitions, new string[] { "COMP_LONG_NAME_CHANGE", "COMP_SHORT_NAME_CHANGE", "COMP_6LETTER_NAME_CHANGE" });
+                        WriteDataTableToFile(streamWriter, awards, new string[] { "AWARD_LONG_NAME_CHANGE", "AWARD_SHORT_NAME_CHANGE" });
                     }
 
                     stream.Close();
@@ -391,47 +411,52 @@ namespace FMFileEditor
             }
         }
 
-        private static void WriteDataTableToFile(StreamWriter streamWriter, DataTable dataTable, string change1, string change2 = null)
+        private static void WriteDataTableToFile(StreamWriter streamWriter, DataTable dataTable, string[] commands)
         {
             string value;
-            string line1;
-            string line2;
+            List<string> lines = new();
             char delimiter = Properties.Settings.Default.Delimiter == 0 ? '\t' : ' ';
 
             for (int i = 0; i < dataTable.Rows.Count; i++)
             {
-                line1 = "\"" + change1 + "\"";
-                line2 = "\"" + change2 + "\"";
+                lines.Clear();
 
                 for (int j = 0; j < dataTable.Columns.Count; j++)
                 {
                     value = j != 0 ? "\"" + dataTable.Rows[i].ItemArray[j].ToString().Replace("\"", "").Trim() + "\"" : dataTable.Rows[i].ItemArray[j].ToString().Replace("\"", "").Trim();
 
-                    if (change2 != null)
+                    for (int k = 0; k < commands.Length; k++)
                     {
-                        if (j != 2)
+                        if (j == 0)
                         {
-                            line1 += delimiter + value;
+                            lines.Add("\"" + commands[k] + "\"");
                         }
-                        if (j != 1)
+
+                        if (commands.Length > 1)
                         {
-                            line2 += delimiter + value;
+                            if (j == 0 || j == k + 1 || j > commands.Length)
+                            {
+                                lines[k] += delimiter + value;
+
+                                if (value == "\"\"" && j <= commands.Length)
+                                {
+                                    lines[k] = "#" + lines[k];
+                                }
+                            }
                         }
-                    }
-                    else
-                    {
-                        line1 += delimiter + value;
+                        else
+                        {
+                            lines[k] += delimiter + value;
+                        }
                     }
                 }
 
-                if (change2 != null)
+                foreach (string line in lines)
                 {
-                    streamWriter.WriteLine(line1);
-                    streamWriter.WriteLine(line2);
-                }
-                else
-                {
-                    streamWriter.WriteLine(line1);
+                    if (!line.StartsWith("#"))
+                    {
+                        streamWriter.WriteLine(line);
+                    }
                 }
             }
         }

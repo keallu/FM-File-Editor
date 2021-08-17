@@ -50,6 +50,7 @@ namespace FMFileEditor
             this.ColumnClubsID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnClubsLongName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnClubsShortName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnClubsLanguage = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.dataGridViewStadiums = new System.Windows.Forms.DataGridView();
@@ -72,6 +73,7 @@ namespace FMFileEditor
             this.ColumnCompetitionsID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnCompetitionsLongName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnCompetitionsShortName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnSixLetterName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnCompetitionsLanguage = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage7 = new System.Windows.Forms.TabPage();
             this.dataGridViewAwards = new System.Windows.Forms.DataGridView();
@@ -94,6 +96,7 @@ namespace FMFileEditor
             this.checkForUpdatesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparatorHelp1 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutFMFileEditorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.releaseNotesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMain.SuspendLayout();
             this.tabControlMain.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -276,6 +279,7 @@ namespace FMFileEditor
             this.ColumnClubsID,
             this.ColumnClubsLongName,
             this.ColumnClubsShortName,
+            this.dataGridViewTextBoxColumn1,
             this.ColumnClubsLanguage});
             this.dataGridViewClubs.ContextMenuStrip = this.contextMenuStripMain;
             this.dataGridViewClubs.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -306,6 +310,13 @@ namespace FMFileEditor
             this.ColumnClubsShortName.HeaderText = "Short Name";
             this.ColumnClubsShortName.MinimumWidth = 6;
             this.ColumnClubsShortName.Name = "ColumnClubsShortName";
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "SixLetterName";
+            this.dataGridViewTextBoxColumn1.HeaderText = "Six Letter Name";
+            this.dataGridViewTextBoxColumn1.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
             // 
             // ColumnClubsLanguage
             // 
@@ -488,6 +499,7 @@ namespace FMFileEditor
             this.ColumnCompetitionsID,
             this.ColumnCompetitionsLongName,
             this.ColumnCompetitionsShortName,
+            this.ColumnSixLetterName,
             this.ColumnCompetitionsLanguage});
             this.dataGridViewCompetitions.ContextMenuStrip = this.contextMenuStripMain;
             this.dataGridViewCompetitions.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -518,6 +530,13 @@ namespace FMFileEditor
             this.ColumnCompetitionsShortName.HeaderText = "Short Name";
             this.ColumnCompetitionsShortName.MinimumWidth = 6;
             this.ColumnCompetitionsShortName.Name = "ColumnCompetitionsShortName";
+            // 
+            // ColumnSixLetterName
+            // 
+            this.ColumnSixLetterName.DataPropertyName = "SixLetterName";
+            this.ColumnSixLetterName.HeaderText = "Six Letter Name";
+            this.ColumnSixLetterName.MinimumWidth = 6;
+            this.ColumnSixLetterName.Name = "ColumnSixLetterName";
             // 
             // ColumnCompetitionsLanguage
             // 
@@ -654,19 +673,19 @@ namespace FMFileEditor
             // analyzerToolStripMenuItem
             // 
             this.analyzerToolStripMenuItem.Name = "analyzerToolStripMenuItem";
-            this.analyzerToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.analyzerToolStripMenuItem.Size = new System.Drawing.Size(158, 26);
             this.analyzerToolStripMenuItem.Text = "Analyzer...";
             this.analyzerToolStripMenuItem.Click += new System.EventHandler(this.analyzerToolStripMenuItem_Click);
             // 
             // toolStripSeparatorTools1
             // 
             this.toolStripSeparatorTools1.Name = "toolStripSeparatorTools1";
-            this.toolStripSeparatorTools1.Size = new System.Drawing.Size(221, 6);
+            this.toolStripSeparatorTools1.Size = new System.Drawing.Size(155, 6);
             // 
             // optionsToolStripMenuItem
             // 
             this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
-            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(158, 26);
             this.optionsToolStripMenuItem.Text = "Options...";
             this.optionsToolStripMenuItem.Click += new System.EventHandler(this.optionsToolStripMenuItem_Click);
             // 
@@ -674,6 +693,7 @@ namespace FMFileEditor
             // 
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.checkForUpdatesToolStripMenuItem,
+            this.releaseNotesToolStripMenuItem,
             this.toolStripSeparatorHelp1,
             this.aboutFMFileEditorToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
@@ -698,6 +718,13 @@ namespace FMFileEditor
             this.aboutFMFileEditorToolStripMenuItem.Size = new System.Drawing.Size(228, 26);
             this.aboutFMFileEditorToolStripMenuItem.Text = "About FM File Editor";
             this.aboutFMFileEditorToolStripMenuItem.Click += new System.EventHandler(this.aboutFMFileEditorToolStripMenuItem_Click);
+            // 
+            // releaseNotesToolStripMenuItem
+            // 
+            this.releaseNotesToolStripMenuItem.Name = "releaseNotesToolStripMenuItem";
+            this.releaseNotesToolStripMenuItem.Size = new System.Drawing.Size(228, 26);
+            this.releaseNotesToolStripMenuItem.Text = "Release Notes...";
+            this.releaseNotesToolStripMenuItem.Click += new System.EventHandler(this.releaseNotesToolStripMenuItem_Click);
             // 
             // FormMain
             // 
@@ -773,14 +800,6 @@ namespace FMFileEditor
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnCitiesID;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnCitiesName;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnCitiesLanguage;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnClubsID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnClubsLongName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnClubsShortName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnClubsLanguage;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnCompetitionsID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnCompetitionsLongName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnCompetitionsShortName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnCompetitionsLanguage;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnAwardsID;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnAwardsLongName;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnAwardsShortName;
@@ -804,6 +823,17 @@ namespace FMFileEditor
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemMainDelete;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparatorTools1;
         private System.Windows.Forms.ToolStripMenuItem optionsToolStripMenuItem;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnCompetitionsID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnCompetitionsLongName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnCompetitionsShortName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnSixLetterName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnCompetitionsLanguage;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnClubsID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnClubsLongName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnClubsShortName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnClubsLanguage;
+        private System.Windows.Forms.ToolStripMenuItem releaseNotesToolStripMenuItem;
     }
 }
 
